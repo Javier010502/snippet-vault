@@ -1,0 +1,42 @@
+[project]
+name = "snippet-vault"
+version = "0.1.0"
+description = "Local-first semantic snippet manager with offline embeddings"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.12",
+    "rich>=15.0",
+    "pyperclip>=1.8",
+    "sentence-transformers>=3.0",
+    "numpy>=1.24",
+]
+optional-dependencies = { dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.5",
+    "mypy>=1.10",
+] }
+
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+snippet-vault = "snippet_vault.cli:app"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+lint.select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+lint.ignore = ["SIM105"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = false
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["snippet_vault*"]
